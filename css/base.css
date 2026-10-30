@@ -76,7 +76,10 @@ body {
   color: var(--fk-sumi);
   cursor: pointer;
 }
-.fk-icon-button:hover { background: var(--fk-ai-soft); }
+/* ホバーはマウスのときだけ（スマホで押した後に色が残らないように） */
+@media (hover: hover) {
+  .fk-icon-button:hover { background: var(--fk-ai-soft); }
+}
 .fk-icon-button[aria-pressed="true"],
 .fk-icon-button[aria-current="page"] { color: var(--fk-ai); }
 
