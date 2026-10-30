@@ -52,7 +52,7 @@ Fuki Sato（fukicycle）が作るアプリで共通して使うデザインシ�
 雛形から作ったアプリには最初から入っています。手で入れる場合は次のとおりです。
 
 ```bash
-npm install github:fukicycle/design#v0.1.1
+npm install github:fukicycle/design#v0.1.2
 ```
 
 ```ts

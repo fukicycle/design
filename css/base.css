@@ -3,7 +3,23 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html, body { margin: 0; height: 100%; }
+/* 一番外側はスクロールさせない。引っぱっても画面全体が動かないようにする。
+   スクロールは中身の領域（.fk-scroll）だけで行う。 */
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+#root { height: 100%; }
+
+/* スクロールしてよい領域。端まで行っても外側に伝えない */
+.fk-scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  min-height: 0;
+}
 
 body {
   background: var(--fk-gofun);
