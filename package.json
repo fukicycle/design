@@ -1,6 +1,6 @@
 {
   "name": "@fukicycle/design",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "fukicycle の全アプリ共通デザインシステム（和の線と、重なるガラス）",
   "license": "MIT",
   "author": "Fuki Sato (https://github.com/fukicycle)",

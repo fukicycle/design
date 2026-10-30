@@ -52,7 +52,7 @@ Fuki Sato（fukicycle）が作るアプリで共通して使うデザインシ�
 雛形から作ったアプリには最初から入っています。手で入れる場合は次のとおりです。
 
 ```bash
-npm install github:fukicycle/design#v0.1.0
+npm install github:fukicycle/design#v0.1.1
 ```
 
 ```ts
@@ -87,7 +87,7 @@ npm install github:fukicycle/design#v0.2.0
 
 ## これから入れるもの
 
-- React 部品：`<Icon name="add" glass />`、画面の枠（上部バー・タブバー）、設定画面、更新バナー、取り消し付きトースト、削除確認、空の画面
+- React 部品：`<Icon name="add" glass />`、画面の枠（上部バー・タブバー）、設定画面、通知（新しい版のお知らせを含む）、取り消し付きトースト、削除確認、空の画面
 - Swift（ぽたりん）向けの色定義の自動生成
 
 ---
