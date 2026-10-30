@@ -1,0 +1,352 @@
+[
+ {
+  "id": "home",
+  "group": "ナビゲーション",
+  "name": "ホーム",
+  "placement": "タブバー左端",
+  "motive": "迷ったとき、いつもの起点に戻りたい"
+ },
+ {
+  "id": "back",
+  "group": "ナビゲーション",
+  "name": "戻る",
+  "placement": "画面左上（親指で届く左端）",
+  "motive": "ひとつ前の画面に戻りたい"
+ },
+ {
+  "id": "forward",
+  "group": "ナビゲーション",
+  "name": "進む",
+  "placement": "リスト行の右端",
+  "motive": "この項目の中身を見たい（押せる行の合図）"
+ },
+ {
+  "id": "close",
+  "group": "ナビゲーション",
+  "name": "閉じる",
+  "placement": "シート・モーダルの右上",
+  "motive": "今の作業をやめて元に戻りたい"
+ },
+ {
+  "id": "menu",
+  "group": "ナビゲーション",
+  "name": "メニュー",
+  "placement": "左上（タブバーが無いWebアプリのみ）",
+  "motive": "ほかの画面を探したい"
+ },
+ {
+  "id": "more",
+  "group": "ナビゲーション",
+  "name": "その他",
+  "placement": "カード・行の右上",
+  "motive": "めったに使わない操作（複製・書き出し等）をしたい"
+ },
+ {
+  "id": "search",
+  "group": "ナビゲーション",
+  "name": "検索",
+  "placement": "一覧画面の上部（入力欄の左）",
+  "motive": "目当ての記録を素早く見つけたい"
+ },
+ {
+  "id": "settings",
+  "group": "ナビゲーション",
+  "name": "設定",
+  "placement": "全画面のトップバー右上（一番右）",
+  "motive": "自分好みに変えたい・困ったときに確認したい"
+ },
+ {
+  "id": "add",
+  "group": "操作",
+  "name": "追加",
+  "placement": "右下のFAB（親指ゾーン）",
+  "motive": "新しい記録をすぐ残したい"
+ },
+ {
+  "id": "edit",
+  "group": "操作",
+  "name": "編集",
+  "placement": "詳細画面の右上／対象の右",
+  "motive": "間違いを直したい"
+ },
+ {
+  "id": "delete",
+  "group": "操作",
+  "name": "削除",
+  "placement": "編集画面の最下部（主ボタンから離す）",
+  "motive": "不要な記録を消したい（取り消せない→確認を挟む）"
+ },
+ {
+  "id": "share",
+  "group": "操作",
+  "name": "共有",
+  "placement": "詳細画面の右上",
+  "motive": "誰かに見せたい・送りたい"
+ },
+ {
+  "id": "download",
+  "group": "操作",
+  "name": "保存",
+  "placement": "書き出し画面・シートの中",
+  "motive": "手元に残しておきたい"
+ },
+ {
+  "id": "copy",
+  "group": "操作",
+  "name": "コピー",
+  "placement": "コード・ID・URLの右隣",
+  "motive": "この値をほかで使いたい"
+ },
+ {
+  "id": "filter",
+  "group": "操作",
+  "name": "絞り込み",
+  "placement": "一覧の上部、検索欄の右",
+  "motive": "条件に合うものだけ見たい"
+ },
+ {
+  "id": "sort",
+  "group": "操作",
+  "name": "並び替え",
+  "placement": "一覧の上部、絞り込みの隣",
+  "motive": "新しい順・良い順で見たい"
+ },
+ {
+  "id": "update",
+  "group": "操作",
+  "name": "更新",
+  "placement": "新しい版のお知らせバナー内（自動では切り替えない）",
+  "motive": "区切りのいいときに新しい版にしたい"
+ },
+ {
+  "id": "undo",
+  "group": "操作",
+  "name": "元に戻す",
+  "placement": "削除・変更直後のトースト内",
+  "motive": "うっかりした操作を取り消したい"
+ },
+ {
+  "id": "check",
+  "group": "状態",
+  "name": "完了",
+  "placement": "保存後のトースト・完了した行",
+  "motive": "ちゃんとできたか確かめたい"
+ },
+ {
+  "id": "info",
+  "group": "状態",
+  "name": "情報",
+  "placement": "用語や数値の横",
+  "motive": "これが何を意味するか知りたい"
+ },
+ {
+  "id": "warning",
+  "group": "状態",
+  "name": "注意",
+  "placement": "入力欄の下・バナー",
+  "motive": "このまま進んで大丈夫か知りたい"
+ },
+ {
+  "id": "error",
+  "group": "状態",
+  "name": "エラー",
+  "placement": "失敗した場所のすぐ横",
+  "motive": "何がだめで、どう直せばいいか知りたい"
+ },
+ {
+  "id": "notify",
+  "group": "状態",
+  "name": "通知（風鈴）",
+  "placement": "トップバー右上（設定の左）",
+  "motive": "見逃したお知らせを確認したい"
+ },
+ {
+  "id": "camera",
+  "group": "メディア",
+  "name": "カメラ",
+  "placement": "記録フォームの写真欄／レシート読取",
+  "motive": "その場で写真を撮って残したい"
+ },
+ {
+  "id": "image",
+  "group": "メディア",
+  "name": "写真",
+  "placement": "記録フォームの写真欄（カメラの隣）",
+  "motive": "撮ってある写真から選びたい"
+ },
+ {
+  "id": "mic",
+  "group": "メディア",
+  "name": "マイク",
+  "placement": "入力欄の右端",
+  "motive": "手を使わずに入力したい"
+ },
+ {
+  "id": "play",
+  "group": "メディア",
+  "name": "再生",
+  "placement": "タイマー・計測の主ボタン",
+  "motive": "計測やタイマーを始めたい"
+ },
+ {
+  "id": "pause",
+  "group": "メディア",
+  "name": "一時停止",
+  "placement": "再生と同じ位置（押すと入れ替わる）",
+  "motive": "少しだけ止めたい"
+ },
+ {
+  "id": "calendar",
+  "group": "時間・データ",
+  "name": "暦",
+  "placement": "日付欄・履歴画面の右上",
+  "motive": "あの日の記録を見たい"
+ },
+ {
+  "id": "clock",
+  "group": "時間・データ",
+  "name": "時刻",
+  "placement": "時刻欄",
+  "motive": "いつ起きたことかを残したい"
+ },
+ {
+  "id": "timer",
+  "group": "時間・データ",
+  "name": "砂時計",
+  "placement": "発酵・待ち時間の表示",
+  "motive": "あとどれくらい待つか知りたい"
+ },
+ {
+  "id": "chart",
+  "group": "時間・データ",
+  "name": "グラフ",
+  "placement": "タブバー（記録の振り返り）",
+  "motive": "成長や変化を一目で見たい"
+ },
+ {
+  "id": "list",
+  "group": "時間・データ",
+  "name": "一覧",
+  "placement": "タブバー（記録の一覧）",
+  "motive": "残した記録をまとめて見たい"
+ },
+ {
+  "id": "user",
+  "group": "人",
+  "name": "自分",
+  "placement": "タブバー右端",
+  "motive": "自分の情報や記録全体を確かめたい"
+ },
+ {
+  "id": "chat",
+  "group": "人",
+  "name": "会話",
+  "placement": "タブバー中央",
+  "motive": "誰かに相談したい・返事を見たい"
+ },
+ {
+  "id": "heart",
+  "group": "人",
+  "name": "いいね",
+  "placement": "投稿の左下（指の自然な位置）",
+  "motive": "良かったと伝えたい"
+ },
+ {
+  "id": "bookmark",
+  "group": "人",
+  "name": "栞",
+  "placement": "記事・ルートの右上",
+  "motive": "あとでまた見返したい"
+ },
+ {
+  "id": "bike",
+  "group": "アプリ固有",
+  "name": "自転車",
+  "placement": "ぽたりん：ライド開始・機材",
+  "motive": "これから走る／走った記録を見たい"
+ },
+ {
+  "id": "route",
+  "group": "アプリ固有",
+  "name": "経路",
+  "placement": "地図画面の右下（現在地の上）",
+  "motive": "走りやすい道を通って行きたい"
+ },
+ {
+  "id": "pin",
+  "group": "アプリ固有",
+  "name": "地点",
+  "placement": "地図上・場所欄",
+  "motive": "この場所を残したい・共有したい"
+ },
+ {
+  "id": "wallet",
+  "group": "アプリ固有",
+  "name": "がま口",
+  "placement": "家計簿：タブバー（支出）",
+  "motive": "今月いくら使ったか知りたい"
+ },
+ {
+  "id": "bread",
+  "group": "アプリ固有",
+  "name": "食パン",
+  "placement": "ひとこね：新しい仕込み",
+  "motive": "今日のパン作りを記録したい"
+ },
+ {
+  "id": "thermo",
+  "group": "アプリ固有",
+  "name": "温度",
+  "placement": "ひとこね：室温・生地温度の欄",
+  "motive": "発酵の条件を残して比べたい"
+ },
+ {
+  "id": "cloud",
+  "group": "アプリ固有",
+  "name": "同期",
+  "placement": "設定のデータ欄・同期状態の表示",
+  "motive": "ほかの端末でも同じ記録を見たい"
+ },
+ {
+  "id": "lock",
+  "group": "アプリ固有",
+  "name": "鍵",
+  "placement": "非公開・招待制の表示の横",
+  "motive": "自分（仲間）だけに見えるか確かめたい"
+ },
+ {
+  "id": "external",
+  "group": "アプリ固有",
+  "name": "外部リンク",
+  "placement": "リンク文字の右隣",
+  "motive": "別のサイトで詳しく見たい（アプリから出ると分かる）"
+ },
+ {
+  "id": "seigaiha",
+  "group": "和モチーフ",
+  "name": "青海波",
+  "placement": "空っぽの画面・読み込み中",
+  "motive": "まだ何もない／待っている間も心地よくいたい"
+ },
+ {
+  "id": "sakura",
+  "group": "和モチーフ",
+  "name": "桜",
+  "placement": "目標達成・自己ベストの演出",
+  "motive": "がんばったことを祝ってほしい"
+ },
+ {
+  "id": "noren",
+  "group": "和モチーフ",
+  "name": "暖簾",
+  "placement": "お店・ショップ・サイトへの入口",
+  "motive": "お店（ストア）に入りたい"
+ },
+ {
+  "id": "enso",
+  "group": "和モチーフ",
+  "name": "円相",
+  "placement": "すべて完了したときの演出",
+  "motive": "ひと区切りついた満足感を味わいたい"
+ }
+]

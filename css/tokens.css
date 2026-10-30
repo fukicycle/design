@@ -1,0 +1,92 @@
+/* fukicycle design — generated from tokens/tokens.json. Do not edit by hand. */
+/* (c) 2026 Fuki Sato — MIT License */
+
+:root,
+:root[data-theme="light"] {
+  --fk-gofun: #f3f4f1;
+  --fk-gofun-raised: #fbfbf9;
+  --fk-glass: rgba(255,255,255,0.62);
+  --fk-glass-edge: rgba(255,255,255,0.9);
+  --fk-sumi: #1f252b;
+  --fk-sumi-muted: #56606a;
+  --fk-line: #d5d9d4;
+  --fk-ai: #24557a;
+  --fk-ai-soft: #dce7ef;
+  --fk-on-ai: #ffffff;
+  --fk-shu: #b8432c;
+  --fk-wakatake: #33735a;
+  --fk-kincha: #8a5a00;
+  --fk-error: #b3261e;
+  --fk-icon-glass: var(--fk-ai);
+  --fk-shadow-glass: 0 8px 24px rgba(31,37,43,0.10);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fk-gofun: #15191e;
+    --fk-gofun-raised: #1c2228;
+    --fk-glass: rgba(38,46,56,0.58);
+    --fk-glass-edge: rgba(255,255,255,0.12);
+    --fk-sumi: #e8ebe7;
+    --fk-sumi-muted: #9ca6ad;
+    --fk-line: #2d353e;
+    --fk-ai: #86b5da;
+    --fk-ai-soft: #1f3346;
+    --fk-on-ai: #0e1a25;
+    --fk-shu: #ef8d75;
+    --fk-wakatake: #7cc3a2;
+    --fk-kincha: #e0b257;
+    --fk-error: #f2a19a;
+    --fk-icon-glass: var(--fk-ai);
+    --fk-shadow-glass: 0 8px 24px rgba(0,0,0,0.40);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --fk-gofun: #15191e;
+  --fk-gofun-raised: #1c2228;
+  --fk-glass: rgba(38,46,56,0.58);
+  --fk-glass-edge: rgba(255,255,255,0.12);
+  --fk-sumi: #e8ebe7;
+  --fk-sumi-muted: #9ca6ad;
+  --fk-line: #2d353e;
+  --fk-ai: #86b5da;
+  --fk-ai-soft: #1f3346;
+  --fk-on-ai: #0e1a25;
+  --fk-shu: #ef8d75;
+  --fk-wakatake: #7cc3a2;
+  --fk-kincha: #e0b257;
+  --fk-error: #f2a19a;
+  --fk-icon-glass: var(--fk-ai);
+  --fk-shadow-glass: 0 8px 24px rgba(0,0,0,0.40);
+  color-scheme: dark;
+}
+
+:root {
+  --fk-space-1: 4px;
+  --fk-space-2: 8px;
+  --fk-space-3: 12px;
+  --fk-space-4: 16px;
+  --fk-space-6: 24px;
+  --fk-space-8: 32px;
+  --fk-radius-xs: 2px;
+  --fk-radius-md: 10px;
+  --fk-radius-lg: 18px;
+  --fk-radius-pill: 999px;
+  --fk-icon-sm: 16px;
+  --fk-icon-md: 24px;
+  --fk-icon-lg: 32px;
+  --fk-touch: 44px;
+  --fk-font-display: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
+  --fk-font-sans: "Zen Kaku Gothic New", "Hiragino Sans", system-ui, sans-serif;
+  --fk-font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+.fk-text-display { font-family: var(--fk-font-display); font-size: 40px; line-height: 48px; font-weight: 600; }
+.fk-text-title { font-family: var(--fk-font-display); font-size: 22px; line-height: 30px; font-weight: 600; }
+.fk-text-body { font-family: var(--fk-font-sans); font-size: 15px; line-height: 24px; font-weight: 400; }
+.fk-text-label { font-family: var(--fk-font-sans); font-size: 13px; line-height: 18px; font-weight: 500; }
+.fk-text-caption { font-family: var(--fk-font-sans); font-size: 12px; line-height: 16px; font-weight: 400; }
+.fk-text-code { font-family: var(--fk-font-mono); font-size: 12px; line-height: 16px; font-weight: 400; }

@@ -1,0 +1,72 @@
+/* fukicycle design — base styles and utilities.
+   tokens.css の後に読み込む。 (c) 2026 Fuki Sato — MIT License */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; height: 100%; }
+
+body {
+  background: var(--fk-gofun);
+  color: var(--fk-sumi);
+  font-family: var(--fk-font-sans);
+  font-size: 15px;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--fk-ai);
+  outline-offset: 2px;
+}
+
+/* ---- 青海波の地（ガラスの下に敷く模様） ---- */
+.fk-seigaiha {
+  background-color: var(--fk-gofun);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Cg fill='none' stroke='%237f8e99' stroke-opacity='.16' stroke-width='1'%3E%3Cpath d='M0 20a10 10 0 0 1 20 0M4 20a6 6 0 0 1 12 0M8 20a2 2 0 0 1 4 0M20 20a10 10 0 0 1 20 0M24 20a6 6 0 0 1 12 0M28 20a2 2 0 0 1 4 0M-10 10a10 10 0 0 1 20 0M10 10a10 10 0 0 1 20 0M30 10a10 10 0 0 1 20 0'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ---- すりガラスの面 ---- */
+.fk-glass {
+  background: var(--fk-glass);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--fk-glass-edge);
+  border-radius: var(--fk-radius-lg);
+}
+.fk-glass--float { box-shadow: var(--fk-shadow-glass); }
+
+/* ---- アイコン ---- */
+.fk-icon {
+  display: inline-block;
+  width: var(--fk-icon-md);
+  height: var(--fk-icon-md);
+  flex: none;
+  vertical-align: middle;
+}
+.fk-icon--sm { width: 20px; height: 20px; }
+.fk-icon--lg { width: var(--fk-icon-lg); height: var(--fk-icon-lg); }
+
+/* アイコンだけのボタン：押せる範囲は最低44px */
+.fk-icon-button {
+  display: inline-grid;
+  place-items: center;
+  width: var(--fk-touch);
+  height: var(--fk-touch);
+  padding: 0;
+  border: 0;
+  border-radius: var(--fk-radius-md);
+  background: transparent;
+  color: var(--fk-sumi);
+  cursor: pointer;
+}
+.fk-icon-button:hover { background: var(--fk-ai-soft); }
+.fk-icon-button[aria-pressed="true"],
+.fk-icon-button[aria-current="page"] { color: var(--fk-ai); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
