@@ -6,6 +6,7 @@
    --fk-ground-2  地のグラデーションの2色目（右下）。無地にしたいときは ground-1 と同じ色。
    --fk-ink  文字とアイコンの線。地の両端の色に対して 4.5:1 以上。
    --fk-accent  差し色。主なボタン、選んでいるもの、リンク、ガラス版アイコンのシート。
+   --fk-accent-2  （なくてもよい）差し色のグラデーションの終わりの色。渡さなければ accent と同じ（グラデーションなし）。地の両端と on-accent に対して 4.5:1 以上。accent と色相が離れすぎると中間が濁るので、近い色相にする。
    --fk-on-accent  差し色の塗りの上の文字とアイコン。accent に対して 4.5:1 以上。
    質感（凹凸・ガラス）は、渡された色からここで計算する。
    [data-theme] を付けた要素の中では、その要素の色で計算し直す（一部だけ別の色にできる）。 */
@@ -17,6 +18,8 @@
   --fk-hair: color-mix(in srgb, var(--fk-ink) 14%, transparent);
   --fk-field-edge: color-mix(in oklab, var(--fk-ink) 55%, var(--fk-ground));
   --fk-icon-glass: var(--fk-accent);
+  --fk-accent-end: var(--fk-accent-2, var(--fk-accent));
+  --fk-accent-gradient: linear-gradient(115deg, var(--fk-accent), var(--fk-accent-end));
   --fk-shade: oklch(from var(--fk-ground) calc(l - 0.40) calc(c * 2.5) h / 0.36);
   --fk-light: rgba(255, 255, 255, 0.95);
   --fk-relief: oklch(from var(--fk-ground) calc(l + 0.01) c h);

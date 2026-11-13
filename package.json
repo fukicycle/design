@@ -1,6 +1,6 @@
 {
   "name": "@fukicycle/design",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "fukicycle の全製品共通デザインシステム（凹凸とガラスの質感・アイコン・置き場所の決まり。色は製品ごと）",
   "license": "MIT",
   "author": "Fuki Sato (https://github.com/fukicycle)",
