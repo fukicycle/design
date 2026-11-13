@@ -1,5 +1,19 @@
 # 変更履歴
 
+## v0.3.1 — 2026-11-13
+
+- iPhone のホーム画面から開いたアプリで、画面の下端に黒い帯が残るのを直す仕組みを追加
+  - `js/viewport.js` の `setupViewport()`：ページが画面より短くなった分を測って `--fk-bottom-shim` に入れ、html に `.fk-bottom-shim` を付ける。あわせて実際の画面の高さを `--fk-vh` に入れ、アプリに戻ったとき・回転したときに測り直す（iOS が 100dvh を計算し直さないことがあるため）
+  - `css/app.css`：`body` の高さを `--fk-vh` ＋ ずれにする。ずれがあるときだけページを伸ばし、伸ばした分が切り取られないよう `html`・`body` の `overflow: hidden` を外す。`body` を `position: relative` にし、画面を覆う膜の基準にする
+  - 高さはキーボードで縮まない `innerHeight` で測る（入力のたびに画面全体が動かないように）
+- DESIGN.md（スクロール）：アプリは起動時に `setupViewport()` を呼ぶ。画面を覆う膜は `fixed` にせず `body` の直下に `absolute` で描く。`fixed` の主ボタン・トーストは `--fk-bottom-shim` の分だけ位置を戻す
+
+### v0.3.0 から上げるとき
+
+- アプリは起動時に `setupViewport()` を呼ぶ（呼ばなければ今までと同じ動き）
+- `position: fixed; inset: 0` の膜（シート・ダイアログの背景）は `position: absolute` にし、`body` の直下に描く
+- 製品で同じ仕組みを持っていれば（貯金のおうちの `src/app/iosViewport.ts` など）、この版に置き換えて消してよい
+
 ## v0.3.0 — 2026-11-13
 
 **グラデーションとガラスを、fukicycle の見分け方としてはっきり見せるようにしました。**

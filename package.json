@@ -1,6 +1,6 @@
 {
   "name": "@fukicycle/design",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "fukicycle の全製品共通デザインシステム（凹凸とガラスの質感・アイコン・置き場所の決まり。色は製品ごと）",
   "license": "MIT",
   "author": "Fuki Sato (https://github.com/fukicycle)",
@@ -16,6 +16,8 @@
     "tokens",
     "css",
     "icons",
+    "js/viewport.js",
+    "js/viewport.d.ts",
     "scripts/check-contrast.mjs",
     "DESIGN.md",
     "LICENSE"
@@ -29,9 +31,14 @@
     "./icons/line/*": "./icons/line/*",
     "./icons/glass/*": "./icons/glass/*",
     "./DESIGN.md": "./DESIGN.md",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./js/viewport.js": {
+      "types": "./js/viewport.d.ts",
+      "default": "./js/viewport.js"
+    }
   },
   "scripts": {
-    "build": "node scripts/build-css.mjs"
+    "build": "node scripts/build-css.mjs",
+    "test": "node --test js/viewport.test.mjs"
   }
 }

@@ -16,7 +16,8 @@ Fuki Sato（fukicycle）が作るアプリとサイトで共通して使うデ�
 | `tokens/tokens.json` | **唯一の正本。** 製品から受け取る色、質感の計算式（昼・夜）、余白、角丸、サイズ |
 | `css/tokens.css` | `tokens.json` から生成した CSS 変数（`--fk-*`）。手で編集しない |
 | `css/material.css` | 地・凹凸・ガラス・ボタン・入力欄・アイコンの部品。サイトでもアプリでも使う |
-| `css/app.css` | アプリの枠（一番外側をスクロールさせない、`.fk-scroll`）。アプリだけで使う |
+| `css/app.css` | アプリの枠（一番外側をスクロールさせない、`.fk-scroll`、画面の高さ）。アプリだけで使う |
+| `js/viewport.js` | 画面の高さのずれを測る `setupViewport()`。`app.css` と組でアプリだけで使う |
 | `icons/line/*.svg` | 線のアイコン（通常時） |
 | `icons/glass/*.svg` | ガラスのアイコン（選択中・有効なとき） |
 | `icons/icons.json` | 各アイコンの名前・置き場所・ユーザーの動機 |
@@ -38,6 +39,10 @@ import "@fukicycle/design/css/tokens.css";
 import "@fukicycle/design/css/material.css";
 import "@fukicycle/design/css/app.css"; // アプリのときだけ
 import "./theme.css";                    // 製品の色
+
+// アプリのときだけ：iPhone のホーム画面から開いたときの、画面の高さのずれを直す（下端の黒い帯）
+import { setupViewport } from "@fukicycle/design/js/viewport.js";
+setupViewport();
 ```
 
 ### 製品の色を渡す
