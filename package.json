@@ -16,8 +16,6 @@
     "tokens",
     "css",
     "icons",
-    "js/viewport.js",
-    "js/viewport.d.ts",
     "scripts/check-contrast.mjs",
     "DESIGN.md",
     "LICENSE"
@@ -31,14 +29,9 @@
     "./icons/line/*": "./icons/line/*",
     "./icons/glass/*": "./icons/glass/*",
     "./DESIGN.md": "./DESIGN.md",
-    "./package.json": "./package.json",
-    "./js/viewport.js": {
-      "types": "./js/viewport.d.ts",
-      "default": "./js/viewport.js"
-    }
+    "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "node scripts/build-css.mjs",
-    "test": "node --test js/viewport.test.mjs"
+    "build": "node scripts/build-css.mjs"
   }
 }

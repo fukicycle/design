@@ -22,41 +22,6 @@ body {
   height: 100%;
 }
 
-/* ---------- 画面の高さ（js/viewport.js の setupViewport() が実測して入れる） ----------
-   --fk-vh          実際の画面の高さ。iOS はアプリに戻ったときに 100dvh を計算し直さないことがあるため
-   --fk-bottom-shim iPhone のホーム画面から開いたとき、ページが画面より短くなる分。ずれていなければ 0
-   setupViewport() を呼ばないアプリでは、100dvh・0px のまま（今までと同じ） */
-:root {
-  --fk-vh: 100dvh;
-  --fk-bottom-shim: 0px;
-}
-
-body {
-  height: calc(var(--fk-vh) + var(--fk-bottom-shim));
-  /* body の直下に描くシート・ダイアログの膜を、伸ばした body の下端まで届かせる基準 */
-  position: relative;
-}
-
-/* ページが画面より短いときは、その分だけ伸ばす。伸ばした分が画面の端で切り取られないよう、
-   このときだけ overflow: hidden を外す（外さないと下端に黒い帯が残る）。
-   ページが動いてしまう分は setupViewport() が先頭に留め、スクロールは .fk-scroll の中だけのまま */
-html.fk-bottom-shim {
-  height: calc(100% + var(--fk-bottom-shim));
-}
-
-html.fk-bottom-shim,
-html.fk-bottom-shim body {
-  overflow: visible;
-}
-
-/* 地のグラデーションは body 自身に描く。html に背景が無いと、body の背景は画面全体（キャンバス）へ
-   移され、iOS では「伸ばす前の短い画面」の大きさで描かれる。そのため html.fk-bottom-shim で伸ばした
-   下端で、グラデーションが最初から繰り返して段差に見える。html に地の2色目を塗っておくと、
-   body の背景は body の大きさ（伸ばした高さ）のまま描かれる */
-html {
-  background: var(--fk-ground-2);
-}
-
 body {
   background: var(--fk-ground-gradient);
   color: var(--fk-ink);
