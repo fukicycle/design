@@ -49,6 +49,14 @@ html.fk-bottom-shim body {
   overflow: visible;
 }
 
+/* 地のグラデーションは body 自身に描く。html に背景が無いと、body の背景は画面全体（キャンバス）へ
+   移され、iOS では「伸ばす前の短い画面」の大きさで描かれる。そのため html.fk-bottom-shim で伸ばした
+   下端で、グラデーションが最初から繰り返して段差に見える。html に地の2色目を塗っておくと、
+   body の背景は body の大きさ（伸ばした高さ）のまま描かれる */
+html {
+  background: var(--fk-ground-2);
+}
+
 body {
   background: var(--fk-ground-gradient);
   color: var(--fk-ink);
