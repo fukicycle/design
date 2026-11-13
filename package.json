@@ -28,7 +28,8 @@
     "./icons/icons.json": "./icons/icons.json",
     "./icons/line/*": "./icons/line/*",
     "./icons/glass/*": "./icons/glass/*",
-    "./DESIGN.md": "./DESIGN.md"
+    "./DESIGN.md": "./DESIGN.md",
+    "./package.json": "./package.json"
   },
   "scripts": {
     "build": "node scripts/build-css.mjs"
