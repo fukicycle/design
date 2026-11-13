@@ -169,14 +169,14 @@
   box-shadow: inset 4px 4px 10px var(--fk-shade), inset -4px -4px 10px var(--fk-light);
 }
 
-/* 主なボタン：差し色で塗る。一画面に一つ */
+/* 主なボタン：差し色のグラデーションで塗る（accent-2 がなければ差し色1色）。一画面に一つ */
 .fk-button--primary {
-  background: var(--fk-accent);
+  background: var(--fk-accent-gradient);
   color: var(--fk-on-accent);
 }
 
 .fk-button--primary:active {
-  background: color-mix(in oklab, var(--fk-accent) 85%, var(--fk-ink));
+  background: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), var(--fk-accent-gradient);
   box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
@@ -186,7 +186,7 @@
   }
 
   .fk-button--primary:hover {
-    background: color-mix(in oklab, var(--fk-accent) 88%, var(--fk-ink));
+    background: linear-gradient(rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), var(--fk-accent-gradient);
   }
 }
 
@@ -247,6 +247,46 @@
 textarea.fk-input {
   padding: 12px 16px;
   resize: vertical;
+}
+
+select.fk-input {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* iPhone の Safari では日付・時刻の欄が独自の幅を持ち、width や padding が効かずに画面からはみ出す。
+   標準の見た目を外し、幅を親に合わせ直す */
+input[type="date"].fk-input,
+input[type="time"].fk-input,
+input[type="datetime-local"].fk-input,
+input[type="month"].fk-input {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  height: 48px;
+  line-height: 46px;
+  padding-block: 0;
+  text-align: left;
+}
+
+.fk-input::-webkit-date-and-time-value {
+  margin: 0;
+  text-align: left;
+}
+
+.fk-input::-webkit-datetime-edit {
+  padding: 0;
+}
+
+/* ---------- 差し色のグラデーションの文字 ----------
+   画面でいちばん大きな数字（今月の合計など）だけに使う。本文や見出しには使わない */
+.fk-gradient-text {
+  background: var(--fk-accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* ---------- アイコン ---------- */

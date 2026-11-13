@@ -3,7 +3,7 @@
 **地の凹凸と、浮かぶガラス。**
 Fuki Sato（fukicycle）が作るアプリとサイトで共通して使うデザインシステムです。凹凸とガラスの質感、UIアイコン54個、置き場所と画面の構造の決まりをまとめています。
 
-**色は持ちません。** テーマカラーは製品ごとに決め、このパッケージに5色を渡します。影・光・ガラスはその色から計算されるので、緑でも青でもパステルでも、同じ質感に見えます。
+**色は持ちません。** テーマカラーは製品ごとに決め、このパッケージに5色（差し色のグラデーションを使うなら6色）を渡します。影・光・ガラスはその色から計算されるので、緑でも青でもパステルでも、同じ質感に見えます。
 
 新しいアプリは雛形リポジトリ（`fukicycle/app-template`）から作り、このパッケージを読み込んで使います。
 
@@ -29,7 +29,7 @@ Fuki Sato（fukicycle）が作るアプリとサイトで共通して使うデ�
 ## 使い方
 
 ```bash
-npm install github:fukicycle/design#v0.2.0
+npm install github:fukicycle/design#v0.3.0
 ```
 
 ```ts
@@ -50,6 +50,7 @@ import "./theme.css";                    // 製品の色
   --fk-ink: #17261f;
   --fk-accent: #2e5b4a;
   --fk-on-accent: #ffffff;
+  --fk-accent-2: #2f6b5c; /* なくてもよい。差し色のグラデーションの終わり */
 }
 
 :root[data-theme="dark"] {
@@ -66,7 +67,7 @@ import "./theme.css";                    // 製品の色
 色を決めたら確かめます。昼と夜で1回ずつ。
 
 ```bash
-npx fk-contrast "#cfe8dd" "#e2e6d2" "#17261f" "#2e5b4a" "#ffffff"
+npx fk-contrast "#cfe8dd" "#e2e6d2" "#17261f" "#2e5b4a" "#ffffff" "#2f6b5c"
 ```
 
 ### 部品
