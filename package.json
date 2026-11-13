@@ -1,20 +1,35 @@
 {
   "name": "@fukicycle/design",
-  "version": "0.1.2",
-  "description": "fukicycle の全アプリ共通デザインシステム（和の線と、重なるガラス）",
+  "version": "0.2.0",
+  "description": "fukicycle の全製品共通デザインシステム（凹凸とガラスの質感・アイコン・置き場所の決まり。色は製品ごと）",
   "license": "MIT",
   "author": "Fuki Sato (https://github.com/fukicycle)",
-  "repository": { "type": "git", "url": "git+https://github.com/fukicycle/design.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fukicycle/design.git"
+  },
   "type": "module",
-  "files": ["tokens", "css", "icons", "DESIGN.md", "LICENSE"],
+  "bin": {
+    "fk-contrast": "./scripts/check-contrast.mjs"
+  },
+  "files": [
+    "tokens",
+    "css",
+    "icons",
+    "scripts/check-contrast.mjs",
+    "DESIGN.md",
+    "LICENSE"
+  ],
   "exports": {
     "./tokens.json": "./tokens/tokens.json",
     "./css/tokens.css": "./css/tokens.css",
-    "./css/base.css": "./css/base.css",
+    "./css/material.css": "./css/material.css",
+    "./css/app.css": "./css/app.css",
     "./icons/icons.json": "./icons/icons.json",
     "./icons/line/*": "./icons/line/*",
     "./icons/glass/*": "./icons/glass/*",
-    "./DESIGN.md": "./DESIGN.md"
+    "./DESIGN.md": "./DESIGN.md",
+    "./package.json": "./package.json"
   },
   "scripts": {
     "build": "node scripts/build-css.mjs"

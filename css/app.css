@@ -1,0 +1,52 @@
+/* fukicycle design — アプリの枠。tokens.css・material.css の後に読み込む。
+   ホームページなど、ページ全体をスクロールさせるサイトでは読み込まない。
+   (c) 2026 Fuki Sato — MIT License */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 一番外側はスクロールさせない。引っぱっても画面全体が動かないようにする。
+   スクロールは中身の領域（.fk-scroll）だけで行う。 */
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--fk-ground-gradient);
+  color: var(--fk-ink);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* スクロールしてよい領域。端まで行っても外側に伝えない */
+.fk-scroll {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+:focus-visible {
+  outline: 2px solid var(--fk-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

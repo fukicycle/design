@@ -1,0 +1,284 @@
+/* fukicycle design — 質感の部品（凹凸とガラス）。
+   tokens.css の後に読み込む。サイトでもアプリでも使える（スクロールの決まりは app.css）。
+   (c) 2026 Fuki Sato — MIT License
+
+   役割の分け方
+   - 地         .fk-ground   2色のグラデーション。上に光やぼかしの飾りを重ねない
+   - 凹凸       .fk-up / .fk-up-s / .fk-down / .fk-groove   地の一部。影と光だけで作る
+   - ガラス     .fk-glass    浮いている層だけ（ナビ・タブバー・札・シート・ダイアログ）
+   本文は地に直接置き、カードに入れて並べない。 */
+
+/* ---------- 地 ---------- */
+.fk-ground {
+  background: var(--fk-ground-gradient);
+  color: var(--fk-ink);
+}
+
+/* ---------- 凹凸 ---------- */
+.fk-up {
+  background: var(--fk-sheen);
+  box-shadow: 10px 10px 24px var(--fk-shade), -10px -10px 24px var(--fk-light);
+}
+
+.fk-up-s {
+  background: var(--fk-sheen);
+  box-shadow: 5px 5px 12px var(--fk-shade), -5px -5px 12px var(--fk-light);
+}
+
+.fk-down {
+  background: var(--fk-dent);
+  box-shadow: inset 5px 5px 14px var(--fk-shade), inset -5px -5px 14px var(--fk-light);
+}
+
+/* 地に彫った溝（区切り線の代わり） */
+.fk-groove {
+  height: 2px;
+  margin: 0;
+  border: 0;
+  background:
+    linear-gradient(var(--fk-shade), var(--fk-shade)) top / 100% 1px no-repeat,
+    linear-gradient(var(--fk-light), var(--fk-light)) bottom / 100% 1px no-repeat;
+}
+
+/* 地から浮き出た形（塗りは地とほぼ同じ色。形全体に影と光を落とす）
+   例：<div class="fk-relief"><span class="fk-relief-part"></span>…</div> */
+.fk-relief {
+  filter: drop-shadow(10px 10px 12px var(--fk-shade)) drop-shadow(-10px -10px 12px var(--fk-light));
+}
+
+.fk-relief-part {
+  background: var(--fk-relief);
+}
+
+/* ---------- ガラス ----------
+   <div class="fk-glass">
+     <div class="fk-glass-bd"></div>      面とぼかし
+     <div class="fk-glass-in">…</div>     中身
+   </div>
+   - ガラスの中にガラスを入れない（重ねるときは兄弟にする）
+   - backdrop-filter の値は変数にしない（Safari で効かなくなるため）
+   - 同時に画面に出す枚数を少なく保つ（古いスマホで重くなる） */
+.fk-glass {
+  position: relative;
+  border-radius: var(--fk-radius-glass);
+  box-shadow: var(--fk-glass-cast);
+}
+
+.fk-glass-bd {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--fk-glass-fill);
+  box-shadow: var(--fk-glass-top);
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  backdrop-filter: blur(14px) saturate(150%);
+}
+
+[data-theme="dark"] .fk-glass-bd {
+  -webkit-backdrop-filter: blur(14px) saturate(115%);
+  backdrop-filter: blur(14px) saturate(115%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .fk-glass-bd {
+    -webkit-backdrop-filter: blur(14px) saturate(115%);
+    backdrop-filter: blur(14px) saturate(115%);
+  }
+}
+
+/* 縁の光（1px のグラデーション） */
+.fk-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--fk-glass-rim);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+.fk-glass-in {
+  position: relative;
+  z-index: 1;
+}
+
+/* 明るい写真や画面の上に重なる札：夜は面を地の色で濃くして、文字を読めるようにする
+   <div class="fk-glass fk-glass--legible">… */
+[data-theme="dark"] .fk-glass--legible > .fk-glass-bd {
+  background: linear-gradient(135deg,
+    color-mix(in oklab, var(--fk-ground) 82%, transparent),
+    color-mix(in oklab, var(--fk-ground) 68%, transparent));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .fk-glass--legible > .fk-glass-bd {
+    background: linear-gradient(135deg,
+      color-mix(in oklab, var(--fk-ground) 82%, transparent),
+      color-mix(in oklab, var(--fk-ground) 68%, transparent));
+  }
+}
+
+@media (max-width: 599px) {
+  .fk-glass-bd {
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    backdrop-filter: blur(10px) saturate(150%);
+  }
+}
+
+/* 透明を減らす設定・ぼかしが使えないブラウザでは、地に近い不透明な面にする */
+@media (prefers-reduced-transparency: reduce) {
+  .fk-glass-bd {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: color-mix(in oklab, var(--fk-ground) 88%, var(--fk-ink));
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .fk-glass-bd {
+    background: color-mix(in oklab, var(--fk-ground) 90%, var(--fk-ink));
+  }
+}
+
+/* ---------- ボタン：浮いていて、押すと沈む ---------- */
+.fk-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fk-space-2);
+  min-height: 48px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: var(--fk-radius-button);
+  background: var(--fk-sheen);
+  box-shadow: 6px 6px 14px var(--fk-shade), -6px -6px 14px var(--fk-light);
+  color: var(--fk-ink);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.fk-button:active {
+  background: var(--fk-dent);
+  box-shadow: inset 4px 4px 10px var(--fk-shade), inset -4px -4px 10px var(--fk-light);
+}
+
+/* 主なボタン：差し色で塗る。一画面に一つ */
+.fk-button--primary {
+  background: var(--fk-accent);
+  color: var(--fk-on-accent);
+}
+
+.fk-button--primary:active {
+  background: color-mix(in oklab, var(--fk-accent) 85%, var(--fk-ink));
+  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+@media (hover: hover) {
+  .fk-button:not(.fk-button--primary):hover {
+    color: var(--fk-accent);
+  }
+
+  .fk-button--primary:hover {
+    background: color-mix(in oklab, var(--fk-accent) 88%, var(--fk-ink));
+  }
+}
+
+/* ---------- アイコンだけのボタン：押せる範囲は 44px 以上 ----------
+   選んでいるもの（aria-pressed / aria-current）は沈んで、差し色になる */
+.fk-icon-button {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--fk-touch);
+  height: var(--fk-touch);
+  padding: 0;
+  border: 0;
+  border-radius: var(--fk-radius-pill);
+  background: var(--fk-sheen);
+  box-shadow: 4px 4px 10px var(--fk-shade), -4px -4px 10px var(--fk-light);
+  color: var(--fk-ink);
+  cursor: pointer;
+}
+
+.fk-icon-button:active,
+.fk-icon-button[aria-pressed="true"],
+.fk-icon-button[aria-current="page"] {
+  background: var(--fk-dent);
+  box-shadow: inset 3px 3px 8px var(--fk-shade), inset -3px -3px 8px var(--fk-light);
+}
+
+.fk-icon-button[aria-pressed="true"],
+.fk-icon-button[aria-current="page"] {
+  color: var(--fk-accent);
+}
+
+/* 行の中など、凹凸を付けると重いところ */
+.fk-icon-button--flat {
+  background: transparent;
+  box-shadow: none;
+}
+
+@media (hover: hover) {
+  .fk-icon-button:hover {
+    color: var(--fk-accent);
+  }
+}
+
+/* ---------- 入力欄：沈める。輪郭が分かるよう細い線を足す ---------- */
+.fk-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--fk-field-edge);
+  border-radius: var(--fk-radius-field);
+  background: var(--fk-dent);
+  box-shadow: inset 4px 4px 10px var(--fk-shade), inset -4px -4px 10px var(--fk-light);
+  color: var(--fk-ink);
+  font: inherit;
+}
+
+textarea.fk-input {
+  padding: 12px 16px;
+  resize: vertical;
+}
+
+/* ---------- アイコン ---------- */
+.fk-icon {
+  display: inline-block;
+  flex: none;
+  width: var(--fk-icon-md);
+  height: var(--fk-icon-md);
+  vertical-align: middle;
+}
+
+.fk-icon--sm {
+  width: var(--fk-icon-sm);
+  height: var(--fk-icon-sm);
+}
+
+.fk-icon--lg {
+  width: var(--fk-icon-lg);
+  height: var(--fk-icon-lg);
+}
+
+/* ---------- フォーカス・動き ---------- */
+.fk-button:focus-visible,
+.fk-icon-button:focus-visible,
+.fk-input:focus-visible {
+  outline: 2px solid var(--fk-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fk-button,
+  .fk-icon-button {
+    transition: none;
+  }
+}
