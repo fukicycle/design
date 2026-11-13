@@ -107,6 +107,22 @@
   z-index: 1;
 }
 
+/* 明るい写真や画面の上に重なる札：夜は面を地の色で濃くして、文字を読めるようにする
+   <div class="fk-glass fk-glass--legible">… */
+[data-theme="dark"] .fk-glass--legible > .fk-glass-bd {
+  background: linear-gradient(135deg,
+    color-mix(in oklab, var(--fk-ground) 82%, transparent),
+    color-mix(in oklab, var(--fk-ground) 68%, transparent));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .fk-glass--legible > .fk-glass-bd {
+    background: linear-gradient(135deg,
+      color-mix(in oklab, var(--fk-ground) 82%, transparent),
+      color-mix(in oklab, var(--fk-ground) 68%, transparent));
+  }
+}
+
 @media (max-width: 599px) {
   .fk-glass-bd {
     -webkit-backdrop-filter: blur(10px) saturate(150%);

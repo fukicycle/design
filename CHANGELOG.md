@@ -6,7 +6,7 @@
 
 - 製品から受け取る色：`--fk-ground-1`・`--fk-ground-2`（地のグラデーション）、`--fk-ink`、`--fk-accent`、`--fk-on-accent`
 - 影・光・沈んだ面・ガラスの影を、渡された色から計算するようにした（`oklch(from …)`。古いブラウザには代わりの値）
-- `css/material.css` を追加：地（`.fk-ground`）、凹凸（`.fk-up`・`.fk-up-s`・`.fk-down`・`.fk-groove`・`.fk-relief`）、ガラス（`.fk-glass` ＋ `.fk-glass-bd` ＋ `.fk-glass-in`）、ボタン、アイコンボタン、入力欄
+- `css/material.css` を追加：地（`.fk-ground`）、凹凸（`.fk-up`・`.fk-up-s`・`.fk-down`・`.fk-groove`・`.fk-relief`）、ガラス（`.fk-glass` ＋ `.fk-glass-bd` ＋ `.fk-glass-in`。明るい中身の上に重なる札は `.fk-glass--legible`）、ボタン、アイコンボタン、入力欄
 - `css/app.css` を追加：アプリの枠（一番外側をスクロールさせない、`.fk-scroll`）
 - `npx fk-contrast` を追加：渡す色で文字が読めるか確かめる
 - アイコンを追加：`expand`（折りたたんだ行を開く）
