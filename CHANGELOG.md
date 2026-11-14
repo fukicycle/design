@@ -1,5 +1,16 @@
 # 変更履歴
 
+## v0.3.2 — 2026-11-14
+
+- DESIGN.md の「注意」を、iPhone のホーム画面から開いたときの `<head>` の meta をそのまま書き写せる形にした
+  - `black-translucent` に加えて、**`mobile-web-app-capable` を足さない**・**`theme-color` を JS で書き換えない** を足した。v0.3.1 では「テーマを選び直したら `theme-color` を書き換える」としていたが、取り下げる
+  - 貯金のおうちで、`black-translucent` を戻しても下端の黒い帯が残り、残り2つを外して直った経緯を書いた
+
+### v0.3.1 から上げるとき
+
+- `<meta name="mobile-web-app-capable">` があれば消す。`theme-color` を JS で書き換えていれば、昼夜2つの `media` 付きの meta だけにする（ホーム画面に追加し直すと反映される）
+- CSS・トークンの変更はない
+
 ## v0.3.1 — 2026-11-13
 
 - DESIGN.md：**`black-translucent` を使わない** という注意を足した（8 の「注意」）
