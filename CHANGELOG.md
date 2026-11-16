@@ -6,7 +6,7 @@
 
 - `.fk-switch`：トグルスイッチ。彫った溝を、浮いたつまみが動く。オンで溝が差し色（グラデーション）に満ち、つまみは差し色の上の色になる。`<button role="switch" aria-checked>` で使う。押せる範囲は 44px 以上
 - `.fk-progress` ＋ `.fk-progress-fill`：プログレスバー。値は `--fk-value`（0〜1）。終わりが分からない待ち時間は `.fk-progress--indeterminate`、太いバーは `.fk-progress--lg`
-- `.fk-ring` ＋ `.fk-ring-label`：プログレスサークル。真ん中は浮いた丸で、数字を置く。大きさは `--fk-ring-size`、溝の太さは `--fk-ring-width`、小さい丸は `.fk-ring--sm`
+- `.fk-ring` ＋ `.fk-ring-label`：プログレスサークル。真ん中は浮いた丸で、数字を置く。弧の始まりと終わりは丸い（終わりの丸は値に合わせて動く。三角関数が使えないブラウザでは角の立った弧）。大きさは `--fk-ring-size`、溝の太さは `--fk-ring-width`、小さい丸は `.fk-ring--sm`
 - `--fk-value` を `@property` で登録した。値を変えると、バーと円がなめらかに伸び縮みする（`prefers-reduced-motion` では止める）
 - DESIGN.md：状態の部品の決まり（スイッチはその場で効く設定だけ・右側に置く、バーと円の使い分け）と、**ガラスの祖先の opacity を動かさない**（ぼかしが外れてちらつく）を足した
 - `preview/index.html` に見本を足した（押すと切り替わる・値が変わる）

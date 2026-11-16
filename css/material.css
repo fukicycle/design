@@ -437,6 +437,35 @@ input[type="month"].fk-input {
 }
 
 /* 真ん中：地から浮いた丸 */
+/* 始まりと終わりを丸くする：溝の中心線の上に、溝の幅の丸を2つ置く（終わりの丸は --fk-value の角度に合わせて動く）。
+   三角関数が使えないブラウザでは、角の立った弧のまま */
+@supports (width: calc(1px * sin(1deg))) {
+  .fk-ring::before {
+    --fk-ring-band: calc(var(--fk-ring-width) - 3px);
+    --fk-ring-mid: calc((var(--fk-ring-size) - 6px) / 2 - var(--fk-ring-band) / 2);
+    --fk-ring-cap: calc(var(--fk-ring-band) / 2);
+    --fk-ring-angle: calc(var(--fk-value) * 1turn);
+    /* 値が 0 のときは丸も出さない */
+    --fk-ring-show: min(var(--fk-value) * 100000%, 100%);
+    background:
+      radial-gradient(
+        circle var(--fk-ring-cap) at 50% calc(50% - var(--fk-ring-mid)),
+        color-mix(in srgb, var(--fk-accent) var(--fk-ring-show), transparent) 96%,
+        transparent
+      ),
+      radial-gradient(
+        circle var(--fk-ring-cap) at calc(50% + var(--fk-ring-mid) * sin(var(--fk-ring-angle))) calc(50% - var(--fk-ring-mid) * cos(var(--fk-ring-angle))),
+        color-mix(in srgb, var(--fk-accent-end) var(--fk-ring-show), transparent) 96%,
+        transparent
+      ),
+      conic-gradient(
+        var(--fk-accent) 0turn,
+        var(--fk-accent-end) var(--fk-ring-angle),
+        transparent var(--fk-ring-angle)
+      );
+  }
+}
+
 .fk-ring::after {
   content: "";
   position: absolute;
