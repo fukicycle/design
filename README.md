@@ -85,6 +85,16 @@ npx fk-contrast "#cfe8dd" "#e2e6d2" "#17261f" "#2e5b4a" "#ffffff" "#2f6b5c"
 <button class="fk-button fk-button--primary">保存する</button>
 <button class="fk-icon-button" aria-label="設定">…settings.svg…</button>
 <input class="fk-input" />
+
+<!-- 状態：スイッチ・バー・円。値は --fk-value（0〜1） -->
+<span id="notify-label">通知を受け取る</span>
+<button type="button" class="fk-switch" role="switch" aria-checked="true" aria-labelledby="notify-label"></button>
+
+<div class="fk-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40"
+     aria-label="アップロード" style="--fk-value: 0.4"><span class="fk-progress-fill"></span></div>
+
+<div class="fk-ring" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72"
+     aria-label="今日の達成" style="--fk-value: 0.72"><span class="fk-ring-label">72%</span></div>
 ```
 
 ガラスの中にガラスを入れないでください。詳しくは [DESIGN.md](./DESIGN.md)。
