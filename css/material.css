@@ -6,7 +6,15 @@
    - 地         .fk-ground   2色のグラデーション。上に光やぼかしの飾りを重ねない
    - 凹凸       .fk-up / .fk-up-s / .fk-down / .fk-groove   地の一部。影と光だけで作る
    - ガラス     .fk-glass    浮いている層だけ（ナビ・タブバー・札・シート・ダイアログ）
+   - 状態       .fk-switch / .fk-progress / .fk-ring   彫った溝の中で、差し色が満ちていく
    本文は地に直接置き、カードに入れて並べない。 */
+
+/* 進み具合（0〜1）。型を登録しておくと、値が変わったときにバーと円がなめらかに動く */
+@property --fk-value {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
 
 /* ---------- 地 ---------- */
 .fk-ground {
@@ -289,6 +297,202 @@ input[type="month"].fk-input {
   color: transparent;
 }
 
+/* ---------- トグルスイッチ：彫った溝の中を、浮いたつまみが動く ----------
+   <button type="button" class="fk-switch" role="switch" aria-checked="false" aria-labelledby="…"></button>
+   - オンにすると溝が差し色（グラデーション）で満ち、つまみが右へ動く。オフは地の色の溝
+   - 押せる範囲は 44px 以上（見た目は 56×32、外側に余白を足している）
+   - 名前は横に書いた文字を aria-labelledby で指す。押したら、その場ですぐ効く設定だけに使う（保存ボタンが要る設定には使わない） */
+.fk-switch {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 56px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--fk-radius-pill);
+  background: var(--fk-dent);
+  box-shadow: inset 3px 3px 7px var(--fk-shade), inset -3px -3px 7px var(--fk-light);
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 押せる範囲を広げる（見た目は変えない） */
+.fk-switch::before {
+  content: "";
+  position: absolute;
+  inset: -6px -4px;
+}
+
+/* つまみ：地から浮いた丸 */
+.fk-switch::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--fk-sheen), var(--fk-relief);
+  box-shadow: 2px 2px 5px var(--fk-shade), -2px -2px 4px var(--fk-light);
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s ease;
+}
+
+.fk-switch[aria-checked="true"] {
+  background: var(--fk-accent-gradient);
+  box-shadow: inset 3px 3px 7px rgba(0, 0, 0, 0.22), inset -2px -2px 5px rgba(255, 255, 255, 0.18);
+}
+
+/* オンのつまみは差し色の上の色。夜でも溝との違いが分かる */
+.fk-switch[aria-checked="true"]::after {
+  transform: translateX(24px);
+  background: var(--fk-on-accent);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.28);
+}
+
+.fk-switch:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---------- プログレスバー：彫った溝に、差し色が満ちていく ----------
+   <div class="fk-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40"
+        aria-label="…" style="--fk-value: 0.4"><span class="fk-progress-fill"></span></div>
+   - 値は --fk-value（0〜1）。変えると、なめらかに伸び縮みする
+   - 終わりが分からない待ち時間は .fk-progress--indeterminate（aria-valuenow を付けない）。
+     常に動き続ける唯一の例外。待ち時間が終わったら必ず消す */
+.fk-progress {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 10px;
+  border-radius: var(--fk-radius-pill);
+  background: var(--fk-dent);
+  box-shadow: inset 2px 2px 5px var(--fk-shade), inset -2px -2px 5px var(--fk-light);
+  overflow: hidden;
+  transition: --fk-value 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.fk-progress-fill {
+  display: block;
+  width: calc(var(--fk-value) * 100%);
+  height: 100%;
+  border-radius: inherit;
+  background: var(--fk-accent-gradient);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.fk-progress--lg {
+  height: 14px;
+}
+
+.fk-progress--indeterminate .fk-progress-fill {
+  width: 36%;
+  animation: fk-progress-slide 1.4s ease-in-out infinite;
+}
+
+@keyframes fk-progress-slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(280%);
+  }
+}
+
+/* ---------- プログレスサークル：彫った円の溝に、差し色が満ちていく ----------
+   <div class="fk-ring" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72"
+        aria-label="…" style="--fk-value: 0.72"><span class="fk-ring-label">72%</span></div>
+   - 真ん中は地から浮いた丸。数字（今日の達成率など）を置く
+   - 大きさは --fk-ring-size、溝の太さは --fk-ring-width。小さい丸（ボタンの横など）は .fk-ring--sm */
+.fk-ring {
+  --fk-ring-size: 96px;
+  --fk-ring-width: 10px;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--fk-ring-size);
+  height: var(--fk-ring-size);
+  border-radius: 50%;
+  background: var(--fk-dent);
+  box-shadow: inset 4px 4px 10px var(--fk-shade), inset -4px -4px 10px var(--fk-light);
+  transition: --fk-value 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* 満ちた部分：上から時計回り。溝の幅だけを残して、内側をくり抜く */
+.fk-ring::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--fk-accent) 0turn,
+    var(--fk-accent-end) calc(var(--fk-value) * 1turn),
+    transparent calc(var(--fk-value) * 1turn)
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--fk-ring-width) + 3px), #000 calc(100% - var(--fk-ring-width) + 3.5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - var(--fk-ring-width) + 3px), #000 calc(100% - var(--fk-ring-width) + 3.5px));
+}
+
+/* 真ん中：地から浮いた丸 */
+/* 始まりと終わりを丸くする：溝の中心線の上に、溝の幅の丸を2つ置く（終わりの丸は --fk-value の角度に合わせて動く）。
+   三角関数が使えないブラウザでは、角の立った弧のまま */
+@supports (width: calc(1px * sin(1deg))) {
+  .fk-ring::before {
+    --fk-ring-band: calc(var(--fk-ring-width) - 3px);
+    --fk-ring-mid: calc((var(--fk-ring-size) - 6px) / 2 - var(--fk-ring-band) / 2);
+    --fk-ring-cap: calc(var(--fk-ring-band) / 2);
+    --fk-ring-angle: calc(var(--fk-value) * 1turn);
+    /* 値が 0 のときは丸も出さない */
+    --fk-ring-show: min(var(--fk-value) * 100000%, 100%);
+    background:
+      radial-gradient(
+        circle var(--fk-ring-cap) at 50% calc(50% - var(--fk-ring-mid)),
+        color-mix(in srgb, var(--fk-accent) var(--fk-ring-show), transparent) 96%,
+        transparent
+      ),
+      radial-gradient(
+        circle var(--fk-ring-cap) at calc(50% + var(--fk-ring-mid) * sin(var(--fk-ring-angle))) calc(50% - var(--fk-ring-mid) * cos(var(--fk-ring-angle))),
+        color-mix(in srgb, var(--fk-accent-end) var(--fk-ring-show), transparent) 96%,
+        transparent
+      ),
+      conic-gradient(
+        var(--fk-accent) 0turn,
+        var(--fk-accent-end) var(--fk-ring-angle),
+        transparent var(--fk-ring-angle)
+      );
+  }
+}
+
+.fk-ring::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--fk-ring-width) + 5px);
+  border-radius: 50%;
+  background: var(--fk-sheen), var(--fk-relief);
+  box-shadow: 3px 3px 8px var(--fk-shade), -3px -3px 8px var(--fk-light);
+}
+
+.fk-ring-label {
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.fk-ring--sm {
+  --fk-ring-size: 44px;
+  --fk-ring-width: 7px;
+}
+
+.fk-ring--sm::after {
+  inset: calc(var(--fk-ring-width) + 4px);
+  box-shadow: 1px 1px 3px var(--fk-shade), -1px -1px 3px var(--fk-light);
+}
+
 /* ---------- アイコン ---------- */
 .fk-icon {
   display: inline-block;
@@ -311,14 +515,25 @@ input[type="month"].fk-input {
 /* ---------- フォーカス・動き ---------- */
 .fk-button:focus-visible,
 .fk-icon-button:focus-visible,
-.fk-input:focus-visible {
+.fk-input:focus-visible,
+.fk-switch:focus-visible {
   outline: 2px solid var(--fk-accent);
   outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .fk-button,
-  .fk-icon-button {
+  .fk-icon-button,
+  .fk-switch::after,
+  .fk-progress,
+  .fk-ring {
     transition: none;
+  }
+
+  /* 終わりが分からない待ち時間：動かさず、溝を薄く満たしておく */
+  .fk-progress--indeterminate .fk-progress-fill {
+    width: 100%;
+    opacity: 0.45;
+    animation: none;
   }
 }
