@@ -5,7 +5,7 @@
    役割の分け方
    - 地         .fk-ground   2色のグラデーション。上に光やぼかしの飾りを重ねない
    - 凹凸       .fk-up / .fk-up-s / .fk-down / .fk-groove   地の一部。影と光だけで作る
-   - ガラス     .fk-glass    浮いている層だけ（ナビ・タブバー・札・シート・ダイアログ）
+   - ガラス     .fk-glass    浮いている層だけ（タブバー・札・シート・ダイアログ）
    - 状態       .fk-switch / .fk-progress / .fk-ring   彫った溝の中で、差し色が満ちていく
    本文は地に直接置き、カードに入れて並べない。 */
 
@@ -160,7 +160,7 @@
   justify-content: center;
   gap: var(--fk-space-2);
   min-height: 48px;
-  padding: 0 22px;
+  padding: 0 var(--fk-space-6);
   border: 0;
   border-radius: var(--fk-radius-button);
   background: var(--fk-sheen);
