@@ -13,7 +13,7 @@ Fuki Sato（fukicycle）が作るアプリとサイトで共通して使うデ�
 
 | 場所 | 内容 |
 |---|---|
-| `tokens/tokens.json` | **唯一の正本。** 製品から受け取る色、質感の計算式（昼・夜）、余白、角丸、サイズ |
+| `tokens/tokens.json` | **唯一の正本。** 製品から受け取る色、質感の計算式（昼・夜）、余白（4px ごと）、角丸、サイズ |
 | `css/tokens.css` | `tokens.json` から生成した CSS 変数（`--fk-*`）。手で編集しない |
 | `css/material.css` | 地・凹凸・ガラス・ボタン・入力欄・アイコンの部品。サイトでもアプリでも使う |
 | `css/app.css` | アプリの枠（一番外側をスクロールさせない、`.fk-scroll`）。アプリだけで使う |
@@ -29,7 +29,7 @@ Fuki Sato（fukicycle）が作るアプリとサイトで共通して使うデ�
 ## 使い方
 
 ```bash
-npm install github:fukicycle/design#v0.3.0
+npm install github:fukicycle/design#v0.5.0
 ```
 
 ```ts
